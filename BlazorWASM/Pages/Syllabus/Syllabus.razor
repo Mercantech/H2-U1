@@ -66,6 +66,14 @@
                     </strong>
                     Design patterns og principper
                 </li>
+                <li>
+                    <strong>
+                        <span class="nav-link-text" @onclick="NavigateToSOLID">
+                            SOLID:
+                        </span>
+                    </strong>
+                    SOLID principper
+                </li>
             </ul>
         </div>
     </div>
@@ -433,5 +441,9 @@
     private void NavigateToDesignPatterns()
     {
         NavigationManager.NavigateTo("/design-patterns");
+    }
+    private void NavigateToSOLID()
+    {
+        NavigationManager.NavigateTo("/solid");
     }
 }
