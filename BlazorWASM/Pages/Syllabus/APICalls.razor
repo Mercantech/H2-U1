@@ -59,50 +59,80 @@
     <!-- HTTP Metoder -->
     <div class="content-section">
         <h2><i class="fas fa-tools"></i> HTTP Metoder</h2>
-        <div class="methods-grid">
+        <p>
+            De fire vigtigste HTTP-metoder svarer til CRUD-principperne:
+            <strong>Create (POST)</strong>, <strong>Read (GET)</strong>, <strong>Update (PUT)</strong> og <strong>Delete (DELETE)</strong>.<br />
+            CRUD beskriver de grundlæggende operationer, man kan udføre på data i et system.
+        </p>
+       
+        <div class="methods-main-grid">
             <div class="method-card get">
                 <div class="method-header">
                     <span class="method-badge">GET</span>
-                    <h4>Hent Data</h4>
+                    <h4>Read (Hent Data)</h4>
                 </div>
+                <p>CRUD: <strong>Read</strong></p>
                 <p>Bruges til at hente information fra serveren. Ændrer ikke data.</p>
                 <div class="code-example">
                     <code>GET /api/opgaver</code>
                 </div>
             </div>
-
             <div class="method-card post">
                 <div class="method-header">
                     <span class="method-badge">POST</span>
-                    <h4>Opret Data</h4>
+                    <h4>Create (Opret Data)</h4>
                 </div>
+                <p>CRUD: <strong>Create</strong></p>
                 <p>Bruges til at oprette nye ressourcer på serveren.</p>
                 <div class="code-example">
                     <code>POST /api/opgaver</code>
                 </div>
             </div>
-
             <div class="method-card put">
                 <div class="method-header">
                     <span class="method-badge">PUT</span>
-                    <h4>Opdater Data</h4>
+                    <h4>Update (Opdater Data)</h4>
                 </div>
+                <p>CRUD: <strong>Update</strong></p>
                 <p>Bruges til at opdatere eksisterende ressourcer.</p>
                 <div class="code-example">
-                    <code>PUT /api/opgaver/123</code>
+                    <code>PUT /api/opgaver/{id}</code>
                 </div>
             </div>
-
             <div class="method-card delete">
                 <div class="method-header">
                     <span class="method-badge">DELETE</span>
-                    <h4>Slet Data</h4>
+                    <h4>Delete (Slet Data)</h4>
                 </div>
+                <p>CRUD: <strong>Delete</strong></p>
                 <p>Bruges til at slette ressourcer fra serveren.</p>
                 <div class="code-example">
-                    <code>DELETE /api/opgaver/123</code>
+                    <code>DELETE /api/opgaver/{id}</code>
                 </div>
             </div>
+        </div>
+        <div class="methods-other-grid">
+            <div class="method-card other patch">
+                <span class="method-badge">PATCH</span>
+                <h4>Opdater delvist</h4>
+                <p>Opdaterer dele af en ressource</p>
+            </div>
+            <div class="method-card other head">
+                <span class="method-badge">HEAD</span>
+                <h4>Header forespørgsel</h4>
+                <p>Henter kun headers, ikke selve dataen</p>
+            </div>
+            <div class="method-card other options">
+                <span class="method-badge">OPTIONS</span>
+                <h4>Metode muligheder</h4>
+                <p>Spørger serveren hvilke metoder der er tilladt</p>
+            </div>
+            <div class="method-card other trace">
+                <span class="method-badge">TRACE</span>
+                <h4>Fejlfinding</h4>
+                <p>Bruges til fejlfinding</p>
+            </div>
+            <!-- Tilføj flere hvis ønsket -->
         </div>
     </div>
 
@@ -501,11 +531,12 @@ public async Task&lt;bool&gt; SletOpgaveAsync(int id)
         margin: 0 1rem;
     }
 
-    .methods-grid {
+    .methods-main-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
         margin-top: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     .method-card {
@@ -800,6 +831,58 @@ public async Task&lt;bool&gt; SletOpgaveAsync(int id)
         margin-bottom: 2rem;
     }
 
+    .crud-mapping {
+        margin: 1.5rem 0 2rem 0;
+        overflow-x: auto;
+    }
+    .crud-mapping table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #f8f9fa;
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 1rem;
+    }
+    .crud-mapping th, .crud-mapping td {
+        padding: 0.7rem 1.2rem;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: left;
+    }
+    .crud-mapping th {
+        background: #667eea;
+        color: white;
+        font-weight: 600;
+    }
+    .crud-mapping tr:last-child td {
+        border-bottom: none;
+    }
+    .methods-other-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    .methods-other-grid .method-card.other {
+        min-height: 120px;
+    }
+
+    .method-card.other.patch {
+        border-left-color: #b97aff;
+        background: linear-gradient(135deg, #f3e8ff, #e0d7fa);
+    }
+    .method-card.other.head {
+        border-left-color: #ebebeb;
+        background: linear-gradient(135deg, #f7f7f7, #ebebeb);
+    }
+    .method-card.other.options {
+        border-left-color: #0d5aa7;
+        background: linear-gradient(135deg, #e0eaff, #d0e0f7);
+    }
+    .method-card.other.trace {
+        border-left-color: #ebebeb;
+        background: linear-gradient(135deg, #f7f7f7, #ebebeb);
+    }
+
     @@media (max-width: 768px) {
         .api-calls-container {
             padding: 1rem;
@@ -827,7 +910,7 @@ public async Task&lt;bool&gt; SletOpgaveAsync(int id)
             margin: 1rem 0;
         }
 
-        .methods-grid,
+        .methods-main-grid,
         .status-codes,
         .encryption-flow,
         .importance-grid {

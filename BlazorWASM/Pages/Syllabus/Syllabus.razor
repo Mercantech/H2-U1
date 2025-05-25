@@ -58,6 +58,14 @@
                     </strong>
                     JSON håndtering og data mapping
                 </li>
+                <li>
+                    <strong>
+                        <span class="nav-link-text" @onclick="NavigateToDesignPatterns">
+                            Design Patterns:
+                        </span>
+                    </strong>
+                    Design patterns og principper
+                </li>
             </ul>
         </div>
     </div>
@@ -421,5 +429,9 @@
     private void NavigateToDataSerialization()
     {
         NavigationManager.NavigateTo("/data-serialization");
+    }
+    private void NavigateToDesignPatterns()
+    {
+        NavigationManager.NavigateTo("/design-patterns");
     }
 }
