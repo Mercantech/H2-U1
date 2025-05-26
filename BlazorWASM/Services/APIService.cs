@@ -17,17 +17,14 @@ namespace BlazorWASM.Services
             try
             {
                 var response = await _httpClient.GetAsync($"{BaseUrl}/Status/all");
-                
+
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonString = await response.Content.ReadAsStringAsync();
-                    var options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
+                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
                     return JsonSerializer.Deserialize<BackendStatus>(jsonString, options);
                 }
-                
+
                 return null;
             }
             catch (Exception ex)
